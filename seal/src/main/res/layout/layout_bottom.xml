@@ -6,6 +6,7 @@
     android:background="#f9f9f9"
     android:orientation="vertical">
 
+    <!--顶部灰色分割线-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
@@ -21,6 +22,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <!--会话-->
         <RelativeLayout
             android:id="@+id/seal_chat"
             android:layout_width="0dp"
@@ -81,6 +83,7 @@
 
         </RelativeLayout>
 
+        <!--通讯录-->
         <RelativeLayout
             android:id="@+id/seal_contact_list"
             android:layout_width="0dp"
@@ -119,7 +122,8 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <RelativeLayout
+        <!--发现-->
+        <!-- <RelativeLayout
             android:id="@+id/seal_find"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -140,7 +144,7 @@
                     android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside" />
-                <!--android:src="@drawable/tab_find"-->
+                -android:src="@drawable/tab_find"
 
                 <TextView
                     android:id="@+id/tab_text_find"
@@ -155,8 +159,9 @@
 
 
             </RelativeLayout>
-        </RelativeLayout>
+        </RelativeLayout> -->
 
+        <!--我-->
         <RelativeLayout
             android:id="@+id/seal_me"
             android:layout_width="0dp"

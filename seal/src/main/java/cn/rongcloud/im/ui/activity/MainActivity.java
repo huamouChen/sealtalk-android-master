@@ -72,34 +72,40 @@ public class MainActivity extends FragmentActivity implements
         setContentView(R.layout.activity_main);
         mContext = this;
         isDebug = getSharedPreferences("config", MODE_PRIVATE).getBoolean("isDebug", false);
+        // 绑定控件
         initViews();
+        // 设置颜色
         changeTextViewColor();
+        // 默认选中第一个
         changeSelectedTabState(0);
+        // 初始化 viewPager
         initMainViewPager();
         registerHomeKeyReceiver(this);
     }
 
 
     private void initViews() {
+        // 绑定控件
         RelativeLayout chatRLayout = (RelativeLayout) findViewById(R.id.seal_chat);
         RelativeLayout contactRLayout = (RelativeLayout) findViewById(R.id.seal_contact_list);
-        RelativeLayout foundRLayout = (RelativeLayout) findViewById(R.id.seal_find);
+//        RelativeLayout foundRLayout = (RelativeLayout) findViewById(R.id.seal_find);
         RelativeLayout mineRLayout = (RelativeLayout) findViewById(R.id.seal_me);
         mImageChats = (ImageView) findViewById(R.id.tab_img_chats);
         mImageContact = (ImageView) findViewById(R.id.tab_img_contact);
-        mImageFind = (ImageView) findViewById(R.id.tab_img_find);
+//        mImageFind = (ImageView) findViewById(R.id.tab_img_find);
         mImageMe = (ImageView) findViewById(R.id.tab_img_me);
         mTextChats = (TextView) findViewById(R.id.tab_text_chats);
         mTextContact = (TextView) findViewById(R.id.tab_text_contact);
-        mTextFind = (TextView) findViewById(R.id.tab_text_find);
+//        mTextFind = (TextView) findViewById(R.id.tab_text_find);
         mTextMe = (TextView) findViewById(R.id.tab_text_me);
         mMineRed = (ImageView) findViewById(R.id.mine_red);
         moreImage = (ImageView) findViewById(R.id.seal_more);
         mSearchImageView = (ImageView) findViewById(R.id.ac_iv_search);
 
+        // 设置点击
         chatRLayout.setOnClickListener(this);
         contactRLayout.setOnClickListener(this);
-        foundRLayout.setOnClickListener(this);
+//        foundRLayout.setOnClickListener(this);
         mineRLayout.setOnClickListener(this);
         moreImage.setOnClickListener(this);
         mSearchImageView.setOnClickListener(this);
@@ -112,6 +118,7 @@ public class MainActivity extends FragmentActivity implements
     }
 
 
+    // 初始化 viewPager
     private void initMainViewPager() {
         Fragment conversationList = initConversationList();
         mViewPager = (ViewPager) findViewById(R.id.main_viewpager);
@@ -120,9 +127,10 @@ public class MainActivity extends FragmentActivity implements
         mUnreadNumView.setOnClickListener(this);
         mUnreadNumView.setDragListencer(this);
 
+        // 底部 tab 对应的 fragment
         mFragment.add(conversationList);
         mFragment.add(new ContactsFragment());
-        mFragment.add(new DiscoverFragment());
+//        mFragment.add(new DiscoverFragment());
         mFragment.add(new MineFragment());
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -136,12 +144,14 @@ public class MainActivity extends FragmentActivity implements
             }
         };
         mViewPager.setAdapter(fragmentPagerAdapter);
-        mViewPager.setOffscreenPageLimit(4);
+        // 设置 viewPager 缓存界面个个数
+        mViewPager.setOffscreenPageLimit(mFragment.size());
         mViewPager.setOnPageChangeListener(this);
         initData();
     }
 
 
+    // 设置 会话 fragment
     private Fragment initConversationList() {
         if (mConversationListFragment == null) {
             ConversationListFragment listFragment = new ConversationListFragment();
@@ -189,28 +199,24 @@ public class MainActivity extends FragmentActivity implements
         }
     }
 
+    // viewPager 滑动监听
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
     @Override
     public void onPageSelected(int position) {
         changeTextViewColor();
         changeSelectedTabState(position);
     }
-
     private void changeTextViewColor() {
         mImageChats.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_chat));
         mImageContact.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_contacts));
-        mImageFind.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_found));
+//        mImageFind.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_found));
         mImageMe.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_me));
         mTextChats.setTextColor(Color.parseColor("#abadbb"));
         mTextContact.setTextColor(Color.parseColor("#abadbb"));
-        mTextFind.setTextColor(Color.parseColor("#abadbb"));
+//        mTextFind.setTextColor(Color.parseColor("#abadbb"));
         mTextMe.setTextColor(Color.parseColor("#abadbb"));
     }
-
     private void changeSelectedTabState(int position) {
         switch (position) {
             case 0:
@@ -221,26 +227,24 @@ public class MainActivity extends FragmentActivity implements
                 mTextContact.setTextColor(Color.parseColor("#0099ff"));
                 mImageContact.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_contacts_hover));
                 break;
+//            case 2:
+//                mTextFind.setTextColor(Color.parseColor("#0099ff"));
+//                mImageFind.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_found_hover));
+//                break;
             case 2:
-                mTextFind.setTextColor(Color.parseColor("#0099ff"));
-                mImageFind.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_found_hover));
-                break;
-            case 3:
                 mTextMe.setTextColor(Color.parseColor("#0099ff"));
                 mImageMe.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_me_hover));
                 break;
         }
     }
-
     @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
+    public void onPageScrollStateChanged(int state) { }
 
 
     long firstClick = 0;
     long secondClick = 0;
 
+    // 点击事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -252,6 +256,7 @@ public class MainActivity extends FragmentActivity implements
                         secondClick = System.currentTimeMillis();
                     }
                     RLog.i("MainActivity", "time = " + (secondClick - firstClick));
+                    // 好像是设置消息未读条数
                     if (secondClick - firstClick > 0 && secondClick - firstClick <= 800) {
                         mConversationListFragment.focusUnreadItem();
                         firstClick = 0;
@@ -266,11 +271,11 @@ public class MainActivity extends FragmentActivity implements
             case R.id.seal_contact_list:
                 mViewPager.setCurrentItem(1, false);
                 break;
-            case R.id.seal_find:
-                mViewPager.setCurrentItem(2, false);
-                break;
+//            case R.id.seal_find:
+//                mViewPager.setCurrentItem(2, false);
+//                break;
             case R.id.seal_me:
-                mViewPager.setCurrentItem(3, false);
+                mViewPager.setCurrentItem(2, false);
                 mMineRed.setVisibility(View.GONE);
                 break;
             case R.id.seal_more:
