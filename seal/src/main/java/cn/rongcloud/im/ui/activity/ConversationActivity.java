@@ -33,7 +33,6 @@ import cn.rongcloud.im.server.utils.NLog;
 import cn.rongcloud.im.server.utils.NToast;
 import cn.rongcloud.im.ui.fragment.ConversationFragmentEx;
 import cn.rongcloud.im.ui.widget.LoadingDialog;
-import io.rong.common.RLog;
 import io.rong.imkit.RongIM;
 import io.rong.imkit.RongKitIntent;
 import io.rong.imkit.fragment.UriFragment;

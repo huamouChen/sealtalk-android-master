@@ -8,6 +8,7 @@ import android.util.Log;
 import org.apache.http.entity.StringEntity;
 
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.util.List;
 
 import cn.rongcloud.im.server.network.http.HttpException;
@@ -75,6 +76,7 @@ import cn.rongcloud.im.server.response.SetGroupNameResponse;
 import cn.rongcloud.im.server.response.VersionResponse;
 import cn.rongcloud.im.server.utils.NLog;
 import cn.rongcloud.im.server.utils.json.JsonMananger;
+//import okhttp3.FormBody;
 
 /**
  * Created by AMing on 16/1/14.
@@ -231,6 +233,11 @@ public class SealAction extends BaseAction {
             NLog.e("LoginResponse", result);
             response = JsonMananger.jsonToBean(result, LoginResponse.class);
         }
+
+        // 登录
+//        LoginResponse response = new LoginResponse();
+//        response.setCode(200);
+
         return response;
     }
 
@@ -248,7 +255,33 @@ public class SealAction extends BaseAction {
             NLog.e("GetTokenResponse", result);
             response = jsonToBean(result, GetTokenResponse.class);
         }
+
+        // 没有替换自己的 APP_key，所以获取的 token 是不对的
+//        GetTokenResponse response = null;
+//        String jsonStr = "{\"code\":200,\"result\":{\"userId\":\"Cxn4GYxWm\",\"token\":\"r86KIs6+Pa2i/euaQYFBlXxpRjANxKgfakOnYLFljI8hGLnvPp6f0GYjwqiwykctQ5zUi20ZHF3lGj6f6nagng==\"}}";
+////        String jsonStr = "{\"code\":200,\"result\":{\"userId\":\"17324200094\",\"token\":\"aKTEX1xubOY60FTOXjO6+5Fo+JgPj1M/zSlaPtimCR517JsY94A0gjrNq7T7OU2DijfGFe/Up7Nmlz2PtrxceKjQwcTv1l9j\"}}";
+//        response = jsonToBean(jsonStr, GetTokenResponse.class);
         return response;
+    }
+
+    //SHA1加密//http://www.rongcloud.cn/docs/server.html#通用_API_接口签名规则
+    private static String sha1(String data) {
+        StringBuffer buffer = new StringBuffer();
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.update(data.getBytes());
+            byte[] bits = md.digest();
+
+            for(int i = 0 ; i < bits.length;i++){
+                int a = bits[i];
+                if(a<0) a+=256;
+                if(a<16) buffer.append("0");
+                buffer.append(Integer.toHexString(a));
+            }
+        } catch (Exception e) {
+
+        }
+        return buffer.toString();
     }
 
     /**

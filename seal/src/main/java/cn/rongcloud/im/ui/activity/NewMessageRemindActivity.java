@@ -9,7 +9,6 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 
 import cn.rongcloud.im.R;
-import cn.rongcloud.im.server.utils.NToast;
 import cn.rongcloud.im.ui.widget.switchbutton.SwitchButton;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
