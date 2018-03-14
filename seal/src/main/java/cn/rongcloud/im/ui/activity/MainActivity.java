@@ -31,7 +31,6 @@ import cn.rongcloud.im.server.utils.NToast;
 import cn.rongcloud.im.server.widget.LoadDialog;
 import cn.rongcloud.im.ui.adapter.ConversationListAdapterEx;
 import cn.rongcloud.im.ui.fragment.ContactsFragment;
-import cn.rongcloud.im.ui.fragment.DiscoverFragment;
 import cn.rongcloud.im.ui.fragment.MineFragment;
 import cn.rongcloud.im.ui.widget.DragPointView;
 import cn.rongcloud.im.ui.widget.MorePopWindow;

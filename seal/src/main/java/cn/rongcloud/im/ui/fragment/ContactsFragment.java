@@ -92,6 +92,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    // 跳转好友详情界面
     private void startFriendDetailsPage(Friend friend) {
         Intent intent = new Intent(getActivity(), UserDetailActivity.class);
         intent.putExtra("type", CLICK_CONTACT_FRAGMENT_FRIEND);
@@ -107,6 +108,8 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         mDialogTextView = (TextView) view.findViewById(R.id.group_dialog);
         mSidBar.setTextView(mDialogTextView);
         LayoutInflater mLayoutInflater = LayoutInflater.from(getActivity());
+
+        // 通讯录 顶部固定 的四个 item  新的朋友 群组 公众号 自己
         mHeadView = mLayoutInflater.inflate(R.layout.item_contact_list_header,
                                             null);
         mUnreadTextView = (TextView) mHeadView.findViewById(R.id.tv_unread);
@@ -150,6 +153,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    // 没有好友的提醒
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -219,6 +223,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // 通过广播的方式来更新通讯录界面
     private void refreshUIListener() {
         BroadcastManager.getInstance(getActivity()).addAction(SealAppContext.UPDATE_FRIEND, new BroadcastReceiver() {
             @Override

@@ -67,7 +67,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 updateUserInfo();
             }
         });
-        compareVersion();
+        // 检查版本更新
+//        compareVersion();
         return mView;
     }
 

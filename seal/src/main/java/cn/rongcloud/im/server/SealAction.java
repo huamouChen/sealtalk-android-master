@@ -448,13 +448,42 @@ public class SealAction extends BaseAction {
 
 
     /**
-     * 获取发生过用户关系的列表
+     * 获取发生过用户关系的列表，也就是好友列表
      *
      * @throws HttpException
      */
     public UserRelationshipResponse getAllUserRelationship() throws HttpException {
         String url = getURL("friendship/all");
-        String result = httpManager.get(url);
+//        String result = httpManager.get(url);
+        String result = "{\n" +
+                "\t\"code\": 200,\n" +
+                "\t\"result\": [{\n" +
+                "\t\t\"displayName\": \"\",\n" +
+                "\t\t\"message\": \"我是Wei\",\n" +
+                "\t\t\"status\": 20,\n" +
+                "\t\t\"updatedAt\": \"2018-03-12T09:12:23.000Z\",\n" +
+                "\t\t\"user\": {\n" +
+                "\t\t\t\"id\": \"pjpBnwKDP\",\n" +
+                "\t\t\t\"nickname\": \"Wei\",\n" +
+                "\t\t\t\"region\": \"86\",\n" +
+                "\t\t\t\"phone\": \"18802036960\",\n" +
+                "\t\t\t\"portraitUri\": \"\"\n" +
+                "\t\t}\n" +
+                "\t}, {\n" +
+                "\t\t\"displayName\": \"\",\n" +
+                "\t\t\"message\": \"我是Wei\",\n" +
+                "\t\t\"status\": 20,\n" +
+                "\t\t\"updatedAt\": \"2018-03-12T09:12:23.000Z\",\n" +
+                "\t\t\"user\": {\n" +
+                "\t\t\t\"id\": \"pjpBnwKD1\",\n" +
+                "\t\t\t\"nickname\": \"Han\",\n" +
+                "\t\t\t\"region\": \"86\",\n" +
+                "\t\t\t\"phone\": \"17324200094\",\n" +
+                "\t\t\t\"portraitUri\": \"\"\n" +
+                "\t\t}\n" +
+                "\t}" +
+                "]\n" +
+                "}";
         UserRelationshipResponse response = null;
         if (!TextUtils.isEmpty(result)) {
             response = jsonToBean(result, UserRelationshipResponse.class);
