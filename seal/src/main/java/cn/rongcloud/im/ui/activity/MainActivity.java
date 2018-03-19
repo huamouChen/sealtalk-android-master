@@ -200,12 +200,15 @@ public class MainActivity extends FragmentActivity implements
 
     // viewPager 滑动监听
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
     @Override
     public void onPageSelected(int position) {
         changeTextViewColor();
         changeSelectedTabState(position);
     }
+
     private void changeTextViewColor() {
         mImageChats.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_chat));
         mImageContact.setBackgroundDrawable(getResources().getDrawable(R.drawable.tab_contacts));
@@ -216,6 +219,7 @@ public class MainActivity extends FragmentActivity implements
 //        mTextFind.setTextColor(Color.parseColor("#abadbb"));
         mTextMe.setTextColor(Color.parseColor("#abadbb"));
     }
+
     private void changeSelectedTabState(int position) {
         switch (position) {
             case 0:
@@ -236,8 +240,10 @@ public class MainActivity extends FragmentActivity implements
                 break;
         }
     }
+
     @Override
-    public void onPageScrollStateChanged(int state) { }
+    public void onPageScrollStateChanged(int state) {
+    }
 
 
     long firstClick = 0;
@@ -296,7 +302,6 @@ public class MainActivity extends FragmentActivity implements
     }
 
     protected void initData() {
-
         final Conversation.ConversationType[] conversationTypes = {
                 Conversation.ConversationType.PRIVATE,
                 Conversation.ConversationType.GROUP, Conversation.ConversationType.SYSTEM,
@@ -307,6 +312,7 @@ public class MainActivity extends FragmentActivity implements
         getConversationPush();// 获取 push 的 id 和 target
         getPushMessage();
     }
+
 
     private void getConversationPush() {
         if (getIntent() != null && getIntent().hasExtra("PUSH_CONVERSATIONTYPE") && getIntent().hasExtra("PUSH_TARGETID")) {
@@ -450,6 +456,7 @@ public class MainActivity extends FragmentActivity implements
     }
 
     private HomeWatcherReceiver mHomeKeyReceiver = null;
+
     //如果遇见 Android 7.0 系统切换到后台回来无效的情况 把下面注册广播相关代码注释或者删除即可解决。下面广播重写 home 键是为了解决三星 note3 按 home 键花屏的一个问题
     private void registerHomeKeyReceiver(Context context) {
         if (mHomeKeyReceiver == null) {

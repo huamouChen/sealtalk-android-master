@@ -141,7 +141,7 @@
         android:padding="15dp"
         android:layout_alignParentBottom="true"
         android:text="@string/forgot_password"
-        android:visibility="gone"/>
+        />
 
     <!--power by-->
     <TextView
@@ -153,7 +153,6 @@
         android:layout_centerHorizontal="true"
         android:padding="15dp"
         android:textColor="#484848"
-        android:visibility="gone"
         />
 
     <!--新用户-->
@@ -167,6 +166,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="@string/new_user"
-        android:visibility="gone"/>
+        />
 
 </RelativeLayout>

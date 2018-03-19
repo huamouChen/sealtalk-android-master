@@ -116,10 +116,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.android.support:multidex-1.0.2" level="project" />
     <orderEntry type="library" name="__local_aars__:C.\Users\wuhan\Desktop\sealtalk\sealtalk-android-master\seal\libs\happy-dns-0.2.3.2.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-26.0.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="com.android.support:multidex-1.0.1" level="project" />
     <orderEntry type="library" name="__local_aars__:C.\Users\wuhan\Desktop\sealtalk\sealtalk-android-master\seal\libs\MiPush_SDK_Client_3_5_1.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:C.\Users\wuhan\Desktop\sealtalk\sealtalk-android-master\seal\libs\AMap_Channel_Location_V1.4.0_20160708.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:recyclerview-v7-26.0.0" level="project" />
@@ -156,6 +154,7 @@
     <orderEntry type="library" name="com.google.android.gms:play-services-basement-8.3.0" level="project" />
     <orderEntry type="library" name="__local_aars__:C.\Users\wuhan\Desktop\sealtalk\sealtalk-android-master\seal\libs\okhttp-2.7.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:26.0.0@jar" level="project" />
+    <orderEntry type="library" name="com.android.support:multidex-1.0.3" level="project" />
     <orderEntry type="module" module-name="contactcard" />
     <orderEntry type="module" module-name="recognizer" />
     <orderEntry type="module" module-name="CallKit" />

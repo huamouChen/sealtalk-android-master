@@ -61,6 +61,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         isDebug = getContext().getSharedPreferences("config", getContext().MODE_PRIVATE).getBoolean("isDebug", false);
         initViews(mView);
         initData();
+        // 注册广播来更新个人信息
         BroadcastManager.getInstance(getActivity()).addAction(SealConst.CHANGEINFO, new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

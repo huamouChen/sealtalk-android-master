@@ -100,6 +100,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         startActivity(intent);
     }
 
+
     private void initView(View view) {
         mSearchEditText = (EditText) view.findViewById(R.id.search);
         mListView = (ListView) view.findViewById(R.id.listview);
@@ -110,8 +111,8 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         LayoutInflater mLayoutInflater = LayoutInflater.from(getActivity());
 
         // 通讯录 顶部固定 的四个 item  新的朋友 群组 公众号 自己
-        mHeadView = mLayoutInflater.inflate(R.layout.item_contact_list_header,
-                                            null);
+        mHeadView = mLayoutInflater.inflate(R.layout.item_contact_list_header, null);
+
         mUnreadTextView = (TextView) mHeadView.findViewById(R.id.tv_unread);
         RelativeLayout newFriendsLayout = (RelativeLayout) mHeadView.findViewById(R.id.re_newfriends);
         RelativeLayout groupLayout = (RelativeLayout) mHeadView.findViewById(R.id.re_chatroom);
@@ -235,6 +236,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        // 注册广播 是否显示 红色角标
         BroadcastManager.getInstance(getActivity()).addAction(SealAppContext.UPDATE_RED_DOT, new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -244,6 +246,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+        // 注册广播 来更新 个人信息
         BroadcastManager.getInstance(getActivity()).addAction(SealConst.CHANGEINFO, new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
